@@ -29,6 +29,6 @@ func TestNewLogger(t *testing.T) {
 	logger := l.Desugar()
 	logger.Info("haha")
 
-	ol := New(core.NewCore(core.InfoLevel))
+	ol := New(core.NewCore(core.InfoLevel, core.NewJsonEncoder()))
 	ol.Info("origin", AnyType("A", "a~"), Error("fake error occurs"))
 }

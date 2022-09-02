@@ -10,7 +10,7 @@ type SugaredLogger struct {
 }
 
 func NewSugaredLogger(level core.Level, options ...Option) *SugaredLogger {
-	c := core.NewCore(level)
+	c := core.NewCore(level, core.NewJsonEncoder())
 	base := New(c, options...)
 	base.callerSkip = 2 // 在基础的 skip 上面额外跳过的栈数
 	return &SugaredLogger{

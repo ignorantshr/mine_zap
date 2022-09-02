@@ -16,8 +16,7 @@ type Core interface {
 }
 
 var (
-	defaultWriter  = os.Stderr
-	defaultEncoder = NewJsonEncoder()
+	defaultWriter = os.Stderr
 )
 
 type ioCore struct {
@@ -26,11 +25,11 @@ type ioCore struct {
 	enc   Encoder
 }
 
-func NewCore(level Level) Core {
+func NewCore(level Level, encoder Encoder) Core {
 	return &ioCore{
 		level: level,
 		out:   defaultWriter,
-		enc:   defaultEncoder,
+		enc:   encoder,
 	}
 }
 
