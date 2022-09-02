@@ -10,5 +10,5 @@ type ObjectEncoder interface {
 
 type Encoder interface {
 	ObjectEncoder
-	Encode(Entry) ([]byte, error)
+	Encode(Entry, []Field) ([]byte, error)
 }

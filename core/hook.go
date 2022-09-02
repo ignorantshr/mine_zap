@@ -22,7 +22,7 @@ func (h *hook) Check(ent Entry, ce *CheckedEntry) *CheckedEntry {
 	return ce
 }
 
-func (h *hook) Write(ent Entry) error {
+func (h *hook) Write(ent Entry, _ []Field) error {
 	for _, fn := range h.fns {
 		if err := fn(ent); err != nil {
 			return err

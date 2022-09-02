@@ -41,27 +41,27 @@ func (l *Logger) With(fields ...Field) *Logger {
 	return log
 }
 
-func (l *Logger) Debug(msg string) {
+func (l *Logger) Debug(msg string, fields ...Field) {
 	if ce := l.check(core.DebugLevel, msg); ce != nil {
-		ce.Write()
+		ce.Write(fields...)
 	}
 }
 
-func (l *Logger) Info(msg string) {
+func (l *Logger) Info(msg string, fields ...Field) {
 	if ce := l.check(core.InfoLevel, msg); ce != nil {
-		ce.Write()
+		ce.Write(fields...)
 	}
 }
 
-func (l *Logger) Warn(msg string) {
+func (l *Logger) Warn(msg string, fields ...Field) {
 	if ce := l.check(core.WarnLevel, msg); ce != nil {
-		ce.Write()
+		ce.Write(fields...)
 	}
 }
 
-func (l *Logger) Error(msg string) {
+func (l *Logger) Error(msg string, fields ...Field) {
 	if ce := l.check(core.ErrorLevel, msg); ce != nil {
-		ce.Write()
+		ce.Write(fields...)
 	}
 }
 

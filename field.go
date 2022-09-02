@@ -10,3 +10,10 @@ func AnyType(key string, val interface{}) Field {
 		Interface: val,
 	}
 }
+
+func Error(val interface{}) Field {
+	return Field{
+		Key:       "error",
+		Interface: val,
+	}
+}

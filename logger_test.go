@@ -1,10 +1,8 @@
 package mine_zap
 
 import (
-	"errors"
 	"log"
 	"mine_zap/core"
-	"mine_zap/multierr"
 	"testing"
 )
 
@@ -27,12 +25,10 @@ func TestNewLogger(t *testing.T) {
 		}),
 	)
 	l.Infof("hh: %s", "sd")
+
 	logger := l.Desugar()
 	logger.Info("haha")
-	ol := New(core.NewCore(core.InfoLevel))
-	ol.Info("origin")
 
-	errGroup := multierr.Combine(errors.New("a\t"), nil)
-	errGroup = multierr.Combine(errGroup, errors.New("c\n"))
-	ol.Info(errGroup.Error())
+	ol := New(core.NewCore(core.InfoLevel))
+	ol.Info("origin", AnyType("A", "a~"), Error("fake error occurs"))
 }

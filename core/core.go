@@ -12,7 +12,7 @@ type Core interface {
 
 	Check(Entry, *CheckedEntry) *CheckedEntry
 
-	Write(Entry) error
+	Write(Entry, []Field) error
 }
 
 var (
@@ -52,8 +52,8 @@ func (c *ioCore) Check(entry Entry, checkedEnt *CheckedEntry) *CheckedEntry {
 	return checkedEnt.AddCore(entry, c)
 }
 
-func (c *ioCore) Write(entry Entry) error {
-	res, err := c.enc.Encode(entry)
+func (c *ioCore) Write(entry Entry, fields []Field) error {
+	res, err := c.enc.Encode(entry, fields)
 	if err != nil {
 		return err
 	}

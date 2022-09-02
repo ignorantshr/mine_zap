@@ -53,12 +53,12 @@ func (ce *CheckedEntry) AddCore(ent Entry, core Core) *CheckedEntry {
 	return ce
 }
 
-func (ce *CheckedEntry) Write() {
+func (ce *CheckedEntry) Write(fields ...Field) {
 	if ce == nil {
 		return
 	}
 	for _, c := range ce.cores {
-		_ = c.Write(ce.Entry)
+		_ = c.Write(ce.Entry, fields)
 	}
 	putCheckedEntry(ce)
 }

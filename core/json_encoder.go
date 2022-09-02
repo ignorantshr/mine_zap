@@ -35,9 +35,12 @@ func (je *jsonEncoder) AddAny(key string, val interface{}) {
 	je.fields[key] = val
 }
 
-func (je *jsonEncoder) Encode(entry Entry) ([]byte, error) {
+func (je *jsonEncoder) Encode(entry Entry, fields []Field) ([]byte, error) {
 	header := je.encodeHeader(entry)
 
+	for _, field := range fields {
+		je.AddAny(field.Key, field.Interface)
+	}
 	if len(je.fields) != 0 {
 		extra, err := json.Marshal(je.fields)
 		if err != nil {
